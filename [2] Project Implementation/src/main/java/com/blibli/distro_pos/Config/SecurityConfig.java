@@ -35,32 +35,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(bCryptPasswordEncoder);
     }
 
-
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//
-//            http.authorizeRequests()
-//                    .antMatchers("/", "/home").permitAll()
-//                    .antMatchers("/admin", "/view_user","/add_user").access("hasAuthority('ROLE_ADMIN')")
-//                    .anyRequest().authenticated()
-//                    .and()
-//                        .formLogin().loginPage("/login").permitAll()
-//                    .and()
-//                        .logout().permitAll()
-//                    .and()
-//                        .exceptionHandling().accessDeniedPage("/403")
-//                    .and()
-//                        .csrf();
-//
-//
-//    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 //                .antMatchers().permitAll()
-                .antMatchers("/admin", "/add_user","/view_user" ).access("hasRole('ROLE_ADMIN')")
-//                .antMatchers("/").access("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+                .antMatchers("/admin", "/add_user","/view_user", "/admin2", "/add_user2").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/dashboard").access("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
                 .and()
                 .formLogin().loginPage("/")
                 .usernameParameter("username").passwordParameter("password")

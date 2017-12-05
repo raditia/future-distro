@@ -19,12 +19,6 @@ public class WebController {
         return "login";
     }
 
-    @RequestMapping(value = {"/admin2"})
-    public String admin2() {
-
-        return "admin2";
-    }
-
     @RequestMapping(value={"/dashboard"})
     public ModelAndView dashboard(){
 
@@ -134,6 +128,50 @@ public class WebController {
             System.out.println("Failed to delete " + username);
 
             return new ModelAndView("redirect:/view_user");
+        }
+    }
+
+    //Version 2
+    @RequestMapping(value = {"/admin2"})
+    public ModelAndView admin2(Authentication authentication) {
+
+        String username = authentication.getName();
+
+        return new ModelAndView("v2/admin2", "username", username);
+    }
+
+    @RequestMapping("/view_user2")
+    public ModelAndView viewAllUser2() {
+
+        List<User> userList = UserDao.getAllUser();
+
+        return new ModelAndView("v2/view_user2", "userList", userList);
+    }
+
+    @GetMapping("/add_user2")
+    public ModelAndView addUser2() {
+
+        return new ModelAndView("v2/add_user2");
+    }
+
+    @PostMapping("/add_user2")
+    public ModelAndView addUser2(@ModelAttribute("user") User user,
+                                @ModelAttribute("role")Role role) {
+
+        user.setEnabled(true);
+
+        System.out.println("Nama Lengkap: " + user.getNamaLengkap() + ", Username : " + user.getUsername() +
+                ", Password : " + user.getPassword() + ", Role : " + role.getRole() + ", KTP: " + user.getKtp() +
+                ", HP: " + user.getTelp() + ", Jenis Kelamin: " + user.getJenisKelamin());
+        int status = UserDao.insertUser(user, role);
+
+        if (status == 1) {
+            System.out.println("BERHASIL");
+            return new ModelAndView("redirect:/view_user2");
+        }
+        else {
+            System.out.println("GAGAL!");
+            return new ModelAndView("redirect:/view_user2");
         }
     }
 }
