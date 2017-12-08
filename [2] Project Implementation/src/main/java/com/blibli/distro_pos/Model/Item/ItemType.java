@@ -1,4 +1,4 @@
-package com.blibli.distro_pos.Model;
+package com.blibli.distro_pos.Model.item;
 
 public class ItemType {
     private String idItem_Type;
