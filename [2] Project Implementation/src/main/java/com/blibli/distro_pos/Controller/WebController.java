@@ -99,15 +99,31 @@ public class WebController {
                 ", Password : " + user.getPassword() + ", Role : " + role.getRole() + ", KTP: " + user.getKtp() +
                 ", HP: " + user.getTelp() + ", Jenis Kelamin: " + user.getJenisKelamin());
 
-        int status = UserDao.editUser(user, role);
+        int status;
 
-        if (status == 1) {
-            System.out.println("Berhasil edit user");
-            return new ModelAndView("redirect:/view_user");
+        try {
+
+
+            if (user.getPassword() == "") {
+                status = UserDao.editUserWithoutPassword(user, role);
+                System.out.println("password:" + user.getPassword());
+            } else {
+                status = UserDao.editUser(user, role);
+
+            }
+
+            if (status == 1) {
+                System.out.println("Berhasil edit user");
+                return new ModelAndView("redirect:/view_user");
+            } else {
+                System.out.println("Gagal edit user" + status);
+                return new ModelAndView("redirect:/view_user");
+            }
         }
-        else {
-            System.out.println("Gagal edit user");
-            return new ModelAndView("redirect:/view_user");
+        catch (Exception e) {
+
+            System.out.println(e.toString());
+            throw e;
         }
 
     }

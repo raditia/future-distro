@@ -194,6 +194,38 @@ public class UserDao {
         return status;
     }
 
+    public static int editUserWithoutPassword(User user, Role role) {
+
+        int status = 0;
+        String sql = "UPDATE users set namalengkap=?, username=?, alamat=?, ktp=?, telp=?, " +
+                "jeniskelamin=? WHERE username=?";
+
+        try {
+
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, user.getNamaLengkap());
+            preparedStatement.setString(2, user.getUsername());
+            preparedStatement.setString(3, user.getAlamat());
+            preparedStatement.setString(4, user.getKtp());
+            preparedStatement.setString(5, user.getTelp());
+            preparedStatement.setString(6, user.getJenisKelamin());
+            preparedStatement.setString(7, user.getUsername());
+
+            status = preparedStatement.executeUpdate();
+            editUserRole(user.getUsername(), role.getRole());
+
+            System.out.println("Finished edit user");
+        }
+        catch (Exception e) {
+
+            System.out.println(e.toString());
+        }
+
+        return status;
+    }
+
     //Mengedit user_roles
     public static int editUserRole(String username, String role) {
 
