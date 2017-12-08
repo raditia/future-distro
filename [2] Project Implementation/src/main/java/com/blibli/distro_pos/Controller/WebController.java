@@ -20,9 +20,11 @@ public class WebController {
     }
 
     @RequestMapping(value={"/dashboard"})
-    public ModelAndView dashboard(){
+    public ModelAndView dashboard(Authentication authentication){
 
-        return new ModelAndView("cashier/dashboard");
+        String username = authentication.getName();
+
+        return new ModelAndView("cashier/dashboard", "username", username);
     }
 
     @RequestMapping(value="/admin")
