@@ -1,31 +1,30 @@
 package com.blibli.distro_pos.Model.item;
 
 public class ItemMerk {
-    private String idItem_Merk;
-    private String nameItem_Merk;
+    private String id;
+    private String name;
 
     public ItemMerk() {
     }
 
     public ItemMerk(String idItem_Merk, String nameItem_Merk) {
-        this.setIdItem_Merk(idItem_Merk);
-        this.setNameItem_Merk(nameItem_Merk);
+        this.setId(idItem_Merk);
+        this.setName(nameItem_Merk);
     }
 
-
-    public String getIdItem_Merk() {
-        return idItem_Merk;
+    public String getId() {
+        return id;
     }
 
-    public void setIdItem_Merk(String idItem_Merk) {
-        this.idItem_Merk = idItem_Merk;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getNameItem_Merk() {
-        return nameItem_Merk;
+    public String getName() {
+        return name;
     }
 
-    public void setNameItem_Merk(String nameItem_Merk) {
-        this.nameItem_Merk = nameItem_Merk;
+    public void setName(String name) {
+        this.name = name;
     }
 }

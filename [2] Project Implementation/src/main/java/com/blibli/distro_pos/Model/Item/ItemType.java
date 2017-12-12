@@ -1,31 +1,30 @@
 package com.blibli.distro_pos.Model.item;
 
 public class ItemType {
-    private String idItem_Type;
-    private String nameItem_Type;
+    private String id;
+    private String name;
 
     public ItemType() {
     }
 
     public ItemType(String idItem_Type, String nameItem_Type) {
-        this.setIdItem_Type(idItem_Type);
-        this.setNameItem_Type(nameItem_Type);
+        this.setId(idItem_Type);
+        this.setName(nameItem_Type);
     }
 
-
-    public String getIdItem_Type() {
-        return idItem_Type;
+    public String getId() {
+        return id;
     }
 
-    public void setIdItem_Type(String idItem_Type) {
-        this.idItem_Type = idItem_Type;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getNameItem_Type() {
-        return nameItem_Type;
+    public String getName() {
+        return name;
     }
 
-    public void setNameItem_Type(String nameItem_Type) {
-        this.nameItem_Type = nameItem_Type;
+    public void setName(String name) {
+        this.name = name;
     }
 }
